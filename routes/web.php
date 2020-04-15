@@ -16,27 +16,21 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/home', function () {
-    return view('welcome');
+Route::get('/plain/index', function () {
+    return view('plain.index');
 });
-Route::post('/users', function () {
-    return view('welcome');
+Route::get('/plain/if-else', function () {
+    return view('plain.if-else');
 });
-Route::put('/users', function () {
-    return view('welcome');
+Route::get('plain/includes', function () {
+    return view('plain.includes');
 });
-Route::match(['get', 'post'], '/users', function () {
-    return view('welcome');
+Route::get('plain/for', function () {
+    return view('plain.for');
 });
-Route::match(['put', 'patch'], '/users', function () {
-    return view('welcome');
+Route::get('plain/foreach', function() {
+    return view('plain.foreach');
 });
-Route::get('/news/{id}/{name}', function ($id, $name) {
-    return response()->json([
-        $id,
-        $name
-    ]);
-});
-Route::get('/news', function () {
-    return response()->json([]);
+Route::get('plain/foreach-complex', function() {
+    return view('plain.foreach-complex');
 });
