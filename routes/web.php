@@ -19,18 +19,13 @@ Route::get('/', function () {
 Route::get('/plain/index', function () {
     return view('plain.index');
 });
-Route::get('/plain/if-else', function () {
-    return view('plain.if-else');
+Route::get('/profile', function () {
+    return view('profile.index');
 });
-Route::get('plain/includes', function () {
-    return view('plain.includes');
+
+
+Auth::routes();
+Route::get('/signup', function () {
+    return view('signup.index');
 });
-Route::get('plain/for', function () {
-    return view('plain.for');
-});
-Route::get('plain/foreach', function() {
-    return view('plain.foreach');
-});
-Route::get('plain/foreach-complex', function() {
-    return view('plain.foreach-complex');
-});
+Route::get('/home', 'HomeController@index')->name('home');

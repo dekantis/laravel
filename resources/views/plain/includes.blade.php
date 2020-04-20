@@ -1,4 +1,4 @@
-@extends('plain.layout')
+@extends('layouts.layout')
 
 @section('styles')
     <link href="/css/app.css">
@@ -10,4 +10,8 @@
     @include('plain.blocks.nav.index')
     @include('plain.blocks.includes.check-overwrite', ['a' => 4])
     A final is: {{$a}} <br>
+@endsection
+
+@section('scripts')
+
 @endsection
