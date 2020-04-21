@@ -20,6 +20,10 @@ Route::get('/plain/index', function () {
     return view('plain.index');
 });
 Route::get('/profile', function () {
+    $products = \App\Models\Product::all();
+    foreach ($products as $product) {
+        echo $product->company->name;
+    }
     return view('profile.index');
 });
 

@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use App\Models\{Company, Product, User};
 
 class ProductsTableSeeder extends Seeder
 {
@@ -11,14 +12,13 @@ class ProductsTableSeeder extends Seeder
      */
     public function run()
     {
-        for ($i = 0; $i< 2; $i++) {
-            \Illuminate\Support\Facades\DB::insert(
-                'insert into products (`name`, `price`) VALUES (?, ?)',
-                [
-                    'Product',
-                    '1234',
-                ]
-            );
+        foreach (Company::all() as $company) {
+            foreach (User::all() as $user) {
+                factory(Product::class, 1)->create([
+                    'company_id' => $company->id,
+                    'user_id' => $user->id,
+                ]);
+            }
         }
     }
 }
