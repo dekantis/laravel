@@ -13,6 +13,19 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::name('cms.')->group(function () {
+        Route::resources([
+            'cities' => 'Cms\Cities\CitiesController',
+            'countries' => 'Cms\Countries\CountriesController',
+            'companies' => 'Cms\Companies\CompaniesController',
+            'products' => 'Cms\Products\ProductsController',
+        ],
+        ['except' => [
+            'show',
+        ]]);
+    });
+
+
 Route::get('/', function () {
     return view('welcome');
 });
