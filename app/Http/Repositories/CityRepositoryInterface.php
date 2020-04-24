@@ -4,7 +4,7 @@
 namespace App\Http\Repositories;
 
 
-interface RepositoryInterface
+interface CityRepositoryInterface
 {
     public function findById($id);
     public function all();

@@ -2,13 +2,12 @@
 
 namespace App\Http\Repositories;
 
-use App\Http\Repositories\RepositoryInterface;
 use App\Models\City;
 
 /**
  * Class CityRepository.
  */
-class CityRepository implements RepositoryInterface
+class CityCityRepository implements CityRepositoryInterface
 {
     public function findById($id)
     {

@@ -5,15 +5,15 @@ namespace App\Http\Controllers\Cms\Cities;
 use App\Models\City;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Http\Repositories\RepositoryInterface;
+use App\Http\Repositories\CityRepositoryInterface;
 
 class CitiesController extends Controller
 {
-    protected $city;
+    protected $cityRepository;
 
-    public function __construct(RepositoryInterface $city)
+    public function __construct(CityRepositoryInterface $cityRepository)
     {
-        $this->city = $city;
+        $this->cityRepository = $cityRepository;
     }
 
     /**
@@ -24,7 +24,7 @@ class CitiesController extends Controller
     public function index()
     {
         $data = [
-            'cities' => $this->city->all()
+            'cities' => $this->cityRepository->all()
         ];
         return view('cities.index', $data);
     }
@@ -94,10 +94,12 @@ class CitiesController extends Controller
             'name' => 'required',
         ]);
 
-        $city = City::find($id);
-        $city->name = $request->get('name');
-        $city->country_id = $request->get('country_id');
-        $city->save();
+        $data =[
+            'name' => $request->get('name'),
+            'country_id' => $request->get('country_id'),
+        ];
+
+        $city = $this->cityRepository->update($id, $data);
 
         return redirect('/cities')->with('success', 'Город обновлен!');
     }
@@ -110,8 +112,7 @@ class CitiesController extends Controller
      */
     public function destroy($id)
     {
-        $city = City::find($id);
-        $city->delete();
+        $this->cityRepository->delete($id);
         return redirect('/cities')->with('success', 'Город удален');
     }
 }
